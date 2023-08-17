@@ -1,6 +1,31 @@
+import {useEffect, useRef} from "react";
+
 const Header = () => {
+
+    const headerRef = useRef(null)
+
+    const stickyHeaderFunc = () => {
+        window.addEventListener("scroll", () => {
+            if(
+                document.body.scrollTop > 80 ||
+                document.documentElement.scrollTop > 80
+            ) {
+                headerRef.current.classList.add("sticky-header");
+            } else {
+                headerRef.current.classList.remove("sticky-header")
+            }
+        })
+
+    }
+
+    useEffect(() => {
+        stickyHeaderFunc();
+
+        return window.removeEventListener("scroll", stickyHeaderFunc)
+    })
+
     return (
-        <header className={"w-full h-[80px] leading-[80px] flex items-center bg-indigo-950"}>
+        <header ref={headerRef} className={"w-full h-[80px] leading-[80px] flex items-center bg-indigo-950"}>
             <div className={"container"}>
                 <div className={"flex items-center justify-between"}>
                     {/*logo*/}
@@ -10,7 +35,7 @@ const Header = () => {
                         B&B
                     </span>
                         <div className={"leading-[20px]"}>
-                            <h2 className={"text-xl text-smallTextColor font-[700]"}>something</h2>
+                            <h2 className={"text-xl text-yellow-300 font-[700] mr-2"}>Your shop online</h2>
                             <p className={"text-smallTextColor text-[14px] font-[500]"}>personal
                             </p>
                         </div>

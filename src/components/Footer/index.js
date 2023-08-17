@@ -8,7 +8,7 @@ const Footer = () => {
             <div className={"container"}>
                 <div className={"sm:flex items-center justify-between md:gap-8"}>
                     <div className={"w-full sm:w-1/2"}>
-                        <h2 className={"text-[26px] leading-10 text-yellow-300 font-[600] mb-5 md:text-[2rem]"}>
+                        <h2 className={"text-[26px] leading-10 text-yellow-300 font-[600] mb-5 md:text-[2rem] mt-2"}>
                             Questions?
                         </h2>
                         <a href={"#contact"}>
