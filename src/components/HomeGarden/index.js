@@ -63,7 +63,7 @@ function HomeGarden() {
                 />
                 {showCards && (
                     <>
-                        <dl className="grid grid-cols-3 gap-2 sm:grid-cols-3 cards">
+                        <dl className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 cards">
                             {currentItems && currentItems?.map((item) => (
                                 <div key={item.name}
                                      className="  overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
@@ -75,16 +75,15 @@ function HomeGarden() {
                                             setSelectedProductId(item.id); // Assuming the product ID is available as item.id
                                             setSelectedProduct(item);
                                             setOpenDetail(true);
-                                        }}                                        className="mr-2 mt-2 font-mono border-b border-indigo-300 bg-gradient-to-l from-neutral-50 to-indigo-200' +
-                                        'lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-indigo-300 lg:p-4 lg:dark:bg-zinc-800/30' +
-                                        'backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit">Vedi il prodotto</button>
+                                        }}className="mt-2 font-mono border-b border-indigo-300 bg-gradient-to-l from-neutral-50 to-indigo-200 lg:w-full lg:rounded-xl lg:border lg:bg-indigo-300 lg:p-4 lg:dark:bg-zinc-800/30 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit"
+                                    >Vedi il prodotto</button>
                                 </div>
                             ))}
 
                         </dl>
                     </>
                 )}
-                <div className="flex justify-center mt-24 z-40">
+                <div className="flex justify-center mt-40 z-40">
                     <button
                         onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={currentPage === 1}

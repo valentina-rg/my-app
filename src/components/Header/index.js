@@ -19,9 +19,8 @@ const Header = () => {
                     {/*menu start*/}
                     <div className={"menu"}>
                         <ul className={"flex items-center gap-10"}>
-                            <li><a className={"text-white font-[600]"} href={"#about"}>About</a></li>
-                            <li><a className={"text-white font-[600]"} href={"#products"}>Products</a></li>
-                            <li><a className={"text-white font-[600]"} href={"#contacts"}>Contacts</a></li>
+                            <li><a className={"text-yellow-300 text-[18px] font-[600]"} href={"#about"}>About</a></li>
+                            <li><a className={"text-yellow-300 text-[18px] font-[600]"} href={"#products"}>Products</a></li>
                         </ul>
                     </div>
                     {/*menu end*/}

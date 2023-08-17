@@ -16,17 +16,17 @@ function App() {
         Aos.init();
     }, []);
 
-  return (
-    <div className={'bg-gradient-to-br from-neutral-50 to-indigo-200 min-h-screen'}>
-      <Header />
-        <main>
-            <Hero />
-            <About />
-            <Products />
-        </main>
-        <Footer />
-    </div>
-  );
+    return (
+        <div className={'bg-gradient-to-br from-neutral-50 to-indigo-200 min-h-screen'}>
+            <Header/>
+            <main>
+                <Hero/>
+                <About/>
+                <Products/>
+            </main>
+            <Footer/>
+        </div>
+    );
 }
 
 export default App;

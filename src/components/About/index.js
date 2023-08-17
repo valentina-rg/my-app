@@ -1,14 +1,13 @@
 const About = () => {
     return (
-        <section id={"services"}>
+        <section id={"about"}>
             <div className={"container lg:pt-5"}>
                 <div className={"text-center"}>
                     <h2 className={"text-headingColor font-[800] text-[2.4rem] mb-5"}>
                         What we can do for you
                     </h2>
-                    <p className={"flex items-center justify-center lg:max-w-[600px] lg-mx-auto text-headingColor font-[500] text-[16px] leading-7"}>
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        anim id est laborum."
+                    <p className={"flex items-center justify-center lg:max-w-[600px] lg-mx-auto text-headingColor font-[600] text-[20px] leading-7"}>
+                        Elevate your shopping journey with our handpicked selection
                     </p>
                 </div>
 
