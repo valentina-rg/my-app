@@ -3,7 +3,6 @@ import Lottie from "lottie-react";
 import animationGarden from "../../lotties/animation_llb5i84t.json";
 import apiRequest from "../../services/apiRequest";
 import ProductModal from "../../ui-components/Modals/ProductModal";
-import Select from "react-select";
 import SearchSelect from "../../ui-components/SearchSelect";
 
 
@@ -137,7 +136,8 @@ function HomeGarden() {
                                         onClick={() => {
                                             setSelectedProductId(item.id); // Assuming the product ID is available as item.id
                                             setOpenDetail(true);
-                                        }}className="mt-2 font-mono border-b border-indigo-300 bg-gradient-to-l from-neutral-50 to-indigo-200 lg:w-full lg:rounded-xl lg:border lg:bg-indigo-300 lg:p-4 lg:dark:bg-zinc-800/30 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit"
+                                        }}
+                                        className="mt-2 font-mono border-b border-indigo-400 bg-gradient-to-r from-indigo-400 to-amber-200 lg:w-full lg:rounded-xl lg:border lg:bg-indigo-400 lg:p-4 lg:dark:bg-amber-200 backdrop-blur-2xl dark:border-indigo-400 dark:bg-amber-200 dark:from-inherit"
                                     >Vedi il prodotto</button>
                                 </div>
                             ))}

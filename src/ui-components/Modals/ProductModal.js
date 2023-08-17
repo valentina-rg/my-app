@@ -29,14 +29,14 @@ function ProductModal({ open, toggleOpen, productId }) {
     };
 
     return (
-        <Modal opened={open} onExit={toggleOpen}>
+        <Modal opened={open} onExit={toggleOpen} modalWidth={'ms'}>
             {productDetails ? (
                 <div className="bg-white p-4 rounded-lg">
                     <div className="flex items-center">
                         <img
                             src={productDetails.image?.src}
                             alt={productDetails.title}
-                            className="w-24 h-24 object-contain mr-4"
+                            className="w-72 h-72 object-contain mr-4"
                         />
                         <div>
                             <h2 className="text-xl font-semibold mb-2">{productDetails.title}</h2>

@@ -13,7 +13,7 @@ const Footer = () => {
                         </h2>
                         <a href={"#contact"}>
                             <button className={"mb-4 bg-white text-black font-[500] flex items-center gap-2 hover:bg-yellow-400 ease-in duration-300 py-2 px-4 rounded-[8px]"}>
-                                <i class={"ri-mail-line"}>Write us!</i>
+                                <i className={"ri-mail-line"}>Write us!</i>
                             </button>
                         </a>
                     </div>
@@ -27,7 +27,7 @@ const Footer = () => {
                             </span>
                             <span>
                                 <a href={"/"} className={"text-yellow-300 font-[500] text-[18px]"}>
-                                    <i class={"ri-instagram-line"}></i>
+                                    <i className={"ri-instagram-line"}></i>
                                 </a>
                                 <a href={"/"} className={"text-yellow-300 font-[500] text-[18px]"}>
                                     <i className={"ri-facebook-line"}></i>

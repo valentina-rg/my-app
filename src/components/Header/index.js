@@ -7,8 +7,8 @@ const Header = () => {
     const stickyHeaderFunc = () => {
         window.addEventListener("scroll", () => {
             if(
-                document.body.scrollTop > 80 ||
-                document.documentElement.scrollTop > 80
+                document.body.scrollTop > 90 ||
+                document.documentElement.scrollTop > 90
             ) {
                 headerRef.current.classList.add("sticky-header");
             } else {
