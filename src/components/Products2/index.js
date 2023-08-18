@@ -15,7 +15,7 @@ const Products2 = () => {
             <div className={"container"}>
                 <div className={"flex items-center justify-between flex-wrap"}>
                     <div className={"mb-2 sm:mb-0"}>
-                        <h3 className={"text-black text-[2rem] font-[700]"}>Our products: </h3>
+                        <h3 className={"text-smallTextColor font-[800] text-[2.4rem]"}>Our products: </h3>
                     </div>
                     <div className={"flex gap-3"}>
                         <Tabs

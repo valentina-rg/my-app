@@ -4,6 +4,7 @@ import animationGarden from "../../lotties/animation_llb5i84t.json";
 import apiRequest from "../../services/apiRequest";
 import ProductModal from "../../ui-components/Modals/ProductModal";
 import SearchSelect from "../../ui-components/SearchSelect";
+import ButtonNavigation from "../../ui-components/ButtonNavigation";
 
 
 
@@ -143,24 +144,9 @@ function HomeGarden() {
                         </dl>
                     </>
                 )}
-                <div className="flex justify-center mt-4 z-40 gap-4">
-                    <button
-                        onClick={() => {
-                            setCurrentPage(currentPage - 1);
-                        }}
-                        disabled={currentPage === 1}
-                        className={"mb-4  mt-2 bg-indigo-300 text-black font-[600] flex items-center gap-2 hover:bg-yellow-400 ease-in duration-300 py-2 px-4 rounded-[8px]"}>
-                        Previous
-                    </button>
-                    <button
-                        onClick={() => {
-                            setCurrentPage(currentPage + 1);
-                        }}
-                        disabled={currentPage === totalPages}
-                        className={"mb-4 mt-2 bg-indigo-300 text-black font-[600] flex items-center gap-2 hover:bg-yellow-400 ease-in duration-300 py-2 px-4 rounded-[8px]"}>
-                        Next
-                    </button>
-                </div>
+            </div>
+            <div className="flex justify-center mt-4 z-40 gap-4">
+                <ButtonNavigation currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages}/>
             </div>
             <ProductModal
                 open={openDetail}
