@@ -45,6 +45,20 @@ body{
   gap: 1rem;
 }
 
+/* Styles for medium-sized screens */
+@media (max-width: 768px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Styles for smaller screens */
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Adjust layout for smaller screens */
 @media (max-width: 768px) {
   .cards {

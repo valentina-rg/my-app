@@ -12,7 +12,7 @@ const Footer = () => {
                             Questions?
                         </h2>
                         <a href={"#contact"}>
-                            <button className={"mb-4 bg-white text-black font-[500] flex items-center gap-2 hover:bg-yellow-400 ease-in duration-300 py-2 px-4 rounded-[8px]"}>
+                            <button className={"mb-4 bg-yellow-100 text-black font-[500] flex items-center gap-2 hover:bg-yellow-400 ease-in duration-300 py-2 px-4 rounded-[8px]"}>
                                 <i className={"ri-mail-line"}>Write us!</i>
                             </button>
                         </a>

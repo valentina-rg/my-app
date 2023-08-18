@@ -36,11 +36,7 @@ const About = () => {
                                                     Botanic & Boutique Bazaar, our mission is clear:
                                                     to bring the world of home furniture and fashion right to your
                                                     doorstep. We believe that our products should be accessible,
-                                                    convenient, and exciting for everyone. Our goal is to offer a
-                                                    curated selection of top-quality products
-                                                    that not only meets your needs but also sparks your enthusiasm.
-                                                    We're committed to redefining how you experience shopping online
-                                                    through innovation, convenience, and exceptional customer service.
+                                                    convenient, and exciting for everyone.
                                                 </p>
                                             </div>
                                         </div>
@@ -72,11 +68,7 @@ const About = () => {
                                                     enthusiasts, driven by our love for home furniture and fashion. Our
                                                     diverse backgrounds and expertise come together to curate a
                                                     collection
-                                                    that reflects our dedication to excellence. From gardening to
-                                                    jewelry, every product is handpicked to ensure it meets
-                                                    our stringent quality standards. Our team is dedicated to staying
-                                                    ahead of the curve, continuously seeking out new trends, designs,
-                                                    and technologies to offer you the best experience.
+                                                    that reflects our dedication to excellence.
                                                 </p>
                                             </div>
                                         </div>

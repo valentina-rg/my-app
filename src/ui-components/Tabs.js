@@ -39,9 +39,9 @@ function Tabs({ tabs, active, setActiveTab }) {
                 key={name}
                 className={classNames(
                   index === active
-                    ? "border-am-500 text-am-600"
+                    ? "border-am-500 text-indigo-900"
                     : "border-transparent text-indigo-900 hover:text-indigo-800 hover:border-yellow-300",
-                    "whitespace-nowrap py-4 px-1 border-b-2 font-[800] text-[2.4rem] cursor-pointer"
+                    "whitespace-nowrap py-4 px-1 border-b-2 font-[600] text-[1.5rem] cursor-pointer"
                 )}
                 aria-current={index === active ? "page" : undefined}
               >

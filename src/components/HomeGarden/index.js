@@ -27,14 +27,11 @@ function HomeGarden() {
     const [tagsOptions, setTagsOptions] = useState([]);
     const [filteredItems, setFilteredItems] = useState([]);
 
-
-
-
-
+    const [showAnimation, setShowAnimation] = useState(true);
 
 
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 3;
+    const itemsPerPage = 5;
 
 
     useEffect(() => {
@@ -60,6 +57,7 @@ function HomeGarden() {
                 // Mostra le cards dopo 3 secondi
                 setTimeout(() => {
                     setShowCards(true);
+                    setShowAnimation(false); // Hide the animation
                 }, 3000);
             });
     }, []);
@@ -110,50 +108,48 @@ function HomeGarden() {
                         placeholder="Select tags..."
                         isMulti  // Add this if you want to select multiple tags
                     />
-                    <SearchSelect
+                    {/*<SearchSelect
                         options={tagsOptions}
                         value={selectedTags}
                         onChange={setSelectedTags}
                         placeholder="Select tags..."
                         isMulti  // Add this if you want to select multiple tags
-                    />
+                    />*/}
                 </div>
-                <Lottie options={defaultOptions}
-                        height={400} width={400}
-                        animationData={animationGarden}
-                        className="animation"
-                />
+                {showAnimation && <Lottie options={defaultOptions}
+                         height={400} width={400}
+                         animationData={animationGarden}
+                         className="animation"
+                />}
                 {showCards && (
                     <>
-                        <dl className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 cards">
+                        <dl className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 ">
                             {currentItems && currentItems?.map((item) => (
                                 <div key={item.name}
                                      className="  overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                                     <img src={item.image?.src} alt={item.title} className="w-full h-48 object-cover"/>
                                     <dt className="truncate text-sm font-medium text-gray-500">{item.tags}</dt>
                                     <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{item.title}</dd>
-                                    <button
-                                        onClick={() => {
-                                            setSelectedProductId(item.id); // Assuming the product ID is available as item.id
-                                            setOpenDetail(true);
-                                        }}
-                                        className="mt-2 font-mono border-b border-indigo-400 bg-gradient-to-r from-indigo-400 to-amber-200 lg:w-full lg:rounded-xl lg:border lg:bg-indigo-400 lg:p-4 lg:dark:bg-amber-200 backdrop-blur-2xl dark:border-indigo-400 dark:bg-amber-200 dark:from-inherit"
-                                    >Vedi il prodotto</button>
+                                    <button onClick={() => {
+                                        setSelectedProductId(item.id); // Assuming the product ID is available as item.id
+                                        setOpenDetail(true);
+                                    }}
+                                            className={"mb-4 mt-2 bg-indigo-300 text-black font-[500] flex items-center gap-2 hover:bg-yellow-400 ease-in duration-300 py-2 px-4 rounded-[8px]"}>
+                                        <i className={"ri-heart-line"}>Take a look</i>
+                                    </button>
                                 </div>
                             ))}
 
                         </dl>
                     </>
                 )}
-                <div className="flex justify-center mt-40 z-40">
+                <div className="flex justify-center mt-4 z-40 gap-4">
                     <button
                         onClick={() => {
                             setCurrentPage(currentPage - 1);
                         }}
                         disabled={currentPage === 1}
-                        className="mr-2 font-mono border-b border-indigo-300 bg-gradient-to-l from-neutral-50 to-indigo-200' +
-                        'lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-indigo-300 lg:p-4 lg:dark:bg-zinc-800/30' +
-                    'backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit">
+                        className={"mb-4  mt-2 bg-indigo-300 text-black font-[600] flex items-center gap-2 hover:bg-yellow-400 ease-in duration-300 py-2 px-4 rounded-[8px]"}>
                         Previous
                     </button>
                     <button
@@ -161,9 +157,7 @@ function HomeGarden() {
                             setCurrentPage(currentPage + 1);
                         }}
                         disabled={currentPage === totalPages}
-                        className="mr-2 font-mono border-b border-indigo-300 bg-gradient-to-l from-neutral-50 to-indigo-200' +
-                        'lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-indigo-300 lg:p-4 lg:dark:bg-zinc-800/30' +
-                    'backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit">
+                        className={"mb-4 mt-2 bg-indigo-300 text-black font-[600] flex items-center gap-2 hover:bg-yellow-400 ease-in duration-300 py-2 px-4 rounded-[8px]"}>
                         Next
                     </button>
                 </div>

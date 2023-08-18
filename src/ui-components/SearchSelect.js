@@ -73,7 +73,7 @@ const SearchSelect = ({
     );
   }
   return (
-    <div className="flex flex-col mb-1">
+    <div className="flex items-center flex-col mb-1">
       {label ? <Label>{label}</Label> : null}
       {component}
     </div>
