@@ -2,9 +2,10 @@ import React, {useEffect, useState} from "react";
 import Lottie from "lottie-react";
 import animationGarden from "../../lotties/animation_llb5i84t.json";
 import apiRequest from "../../services/apiRequest";
-import ProductModal from "../../ui-components/Modals/ProductModal";
+import ProductModal from "../Modals/ProductModal";
 import SearchSelect from "../../ui-components/SearchSelect";
 import ButtonNavigation from "../../ui-components/ButtonNavigation";
+import ProductCards from "../ProductCards";
 
 
 
@@ -29,6 +30,9 @@ function HomeGarden() {
     const [filteredItems, setFilteredItems] = useState([]);
 
     const [showAnimation, setShowAnimation] = useState(true);
+
+    const [sortByAlphabetical, setSortByAlphabetical] = useState(false);
+
 
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -55,13 +59,21 @@ function HomeGarden() {
                     label: tag,
                 })));
 
+
+                let sortedProducts = res.data.products || [];
+                if (sortByAlphabetical) {
+                    sortedProducts = sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
+                }
+
+                setFilteredItems(sortedProducts);
+
                 // Mostra le cards dopo 3 secondi
                 setTimeout(() => {
                     setShowCards(true);
                     setShowAnimation(false); // Hide the animation
                 }, 3000);
             });
-    }, []);
+    }, [sortByAlphabetical]);
 
     console.log({detailCollection})
 
@@ -101,21 +113,25 @@ function HomeGarden() {
     return (
         <div className={"container"}>
             <div className="mr-8 flex justify-center items-center z-0 flex-col opacity-90">
-                <div className="flex justify-center gap-2 z-40 w-96">
+                <div className="flex justify-center gap-2 z-40 w-96 mt-12">
                     <SearchSelect
                         options={tagsOptions}
                         value={selectedTags}
                         onChange={setSelectedTags}
-                        placeholder="Select tags..."
-                        isMulti  // Add this if you want to select multiple tags
+                        isMulti
+                        label={"Select product by tag"}
                     />
-                    {/*<SearchSelect
-                        options={tagsOptions}
-                        value={selectedTags}
-                        onChange={setSelectedTags}
-                        placeholder="Select tags..."
-                        isMulti  // Add this if you want to select multiple tags
-                    />*/}
+                    <SearchSelect
+                        options={[
+                            { value: "default", label: "Default" },
+                            { value: "alphabetical", label: "Sort Alphabetically" },
+                        ]}
+                        value={sortByAlphabetical ? { value: "alphabetical", label: "Sort Alphabetically" } : { value: "default", label: "Default" }}
+                        onChange={(selectedOption) => {
+                            setSortByAlphabetical(selectedOption.value === "alphabetical");
+                        }}
+                        label={"Order by"}
+                    />
                 </div>
                 {showAnimation && <Lottie options={defaultOptions}
                          height={400} width={400}
@@ -123,26 +139,7 @@ function HomeGarden() {
                          className="animation"
                 />}
                 {showCards && (
-                    <>
-                        <dl className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 ">
-                            {currentItems && currentItems?.map((item) => (
-                                <div key={item.name}
-                                     className="  overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                    <img src={item.image?.src} alt={item.title} className="w-full h-48 object-cover"/>
-                                    <dt className="truncate text-sm font-medium text-gray-500">{item.tags}</dt>
-                                    <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{item.title}</dd>
-                                    <button onClick={() => {
-                                        setSelectedProductId(item.id); // Assuming the product ID is available as item.id
-                                        setOpenDetail(true);
-                                    }}
-                                            className={"mb-4 mt-2 bg-indigo-300 text-black font-[500] flex items-center gap-2 hover:bg-yellow-400 ease-in duration-300 py-2 px-4 rounded-[8px]"}>
-                                        <i className={"ri-heart-line"}>Take a look</i>
-                                    </button>
-                                </div>
-                            ))}
-
-                        </dl>
-                    </>
+                    <ProductCards items={currentItems} setSelectedProductId={setSelectedProductId} setOpenDetail={setOpenDetail}/>
                 )}
             </div>
             <div className="flex justify-center mt-4 z-40 gap-4">
