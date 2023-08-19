@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import apiRequest from "../../services/apiRequest";
 import Modal from "../Modal";
+import Spinner from "../Spinner";
 
 function ProductModal({ open, toggleOpen, productId }) {
     const [productDetails, setProductDetails] = useState([]);
@@ -90,14 +91,14 @@ function ProductModal({ open, toggleOpen, productId }) {
                             <div key={variant.id} className="flex justify-between items-center border-b py-2">
                                 <p>Prezzo:</p>
                                 <p className="font-semibold">
-                                    {hasDifferentPrices() && parseFloat(variant.price) === findLowestPrice() && "(Sale!) "}
+                                    {hasDifferentPrices() && parseFloat(variant.price) === findLowestPrice() && <i className={"ri-heart-fill text-indigo-500"}>(Sale!)</i> }
                                     {hasDifferentPrices() && parseFloat(variant.price) === findHighestPrice() && (
                                         <span className="line-through">
                                             {parseFloat(variant.price).toFixed(2)} €
                                         </span>
                                     )}
                                     {(!hasDifferentPrices() || parseFloat(variant.price) !== findHighestPrice()) && (
-                                        <span>{parseFloat(variant.price).toFixed(2)} €</span>
+                                        <span className={"ml-2"}>{parseFloat(variant.price).toFixed(2)} €</span>
                                     )}
                                 </p>
                             </div>
@@ -105,7 +106,12 @@ function ProductModal({ open, toggleOpen, productId }) {
                     </div>
                 </div>
             ) : (
-                <p>Loading product details...</p>
+                <>
+                    <Spinner
+                        description={"Loading"}
+                        styleType="loader"
+                    />
+                </>
             )}
         </Modal>
     );
