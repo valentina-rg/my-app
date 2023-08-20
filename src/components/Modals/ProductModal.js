@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import apiRequest from "../../services/apiRequest";
-import Modal from "../Modal";
+import Modal from "../../ui-components/Modal";
+import Spinner from "../../ui-components/Spinner";
+import {findHighestPrice, findLowestPrice, hasDifferentPrices, stripHtmlTags} from "../../constants";
 
 function ProductModal({ open, toggleOpen, productId }) {
     const [productDetails, setProductDetails] = useState([]);
@@ -21,54 +23,7 @@ function ProductModal({ open, toggleOpen, productId }) {
 
     console.log({ productDetails });
 
-    const stripHtmlTags = (htmlString) => {
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = htmlString;
-        return tempDiv.textContent || tempDiv.innerText || "";
-    };
 
-    const findLowestPrice = () => {
-        if (!productDetails.variants) return null;
-
-        let lowestPrice = null;
-
-        productDetails.variants.forEach((variant) => {
-            const price = parseFloat(variant.price);
-            if (lowestPrice === null || price < lowestPrice) {
-                lowestPrice = price;
-            }
-        });
-
-        return lowestPrice;
-    };
-
-    const findHighestPrice = () => {
-        if (!productDetails.variants) return null;
-
-        let highestPrice = null;
-
-        productDetails.variants.forEach((variant) => {
-            const price = parseFloat(variant.price);
-            if (highestPrice === null || price > highestPrice) {
-                highestPrice = price;
-            }
-        });
-
-        return highestPrice;
-    };
-
-    const hasDifferentPrices = () => {
-        if (!productDetails.variants) return false;
-
-        const uniquePrices = new Set();
-
-        productDetails.variants.forEach((variant) => {
-            const price = parseFloat(variant.price);
-            uniquePrices.add(price);
-        });
-
-        return uniquePrices.size > 1;
-    };
 
     return (
         <Modal opened={open} onExit={toggleOpen} modalWidth={"ms"}>
@@ -90,14 +45,14 @@ function ProductModal({ open, toggleOpen, productId }) {
                             <div key={variant.id} className="flex justify-between items-center border-b py-2">
                                 <p>Prezzo:</p>
                                 <p className="font-semibold">
-                                    {hasDifferentPrices() && parseFloat(variant.price) === findLowestPrice() && "(Sale!) "}
-                                    {hasDifferentPrices() && parseFloat(variant.price) === findHighestPrice() && (
+                                    {hasDifferentPrices(productDetails) && parseFloat(variant.price) === findLowestPrice(productDetails) && <i className={"ri-heart-fill text-indigo-500"}>(Sale!)</i> }
+                                    {hasDifferentPrices(productDetails) && parseFloat(variant.price) === findHighestPrice(productDetails) && (
                                         <span className="line-through">
                                             {parseFloat(variant.price).toFixed(2)} €
                                         </span>
                                     )}
-                                    {(!hasDifferentPrices() || parseFloat(variant.price) !== findHighestPrice()) && (
-                                        <span>{parseFloat(variant.price).toFixed(2)} €</span>
+                                    {(!hasDifferentPrices(productDetails) || parseFloat(variant.price) !== findHighestPrice(productDetails)) && (
+                                        <span className={"ml-2"}>{parseFloat(variant.price).toFixed(2)} €</span>
                                     )}
                                 </p>
                             </div>
@@ -105,7 +60,12 @@ function ProductModal({ open, toggleOpen, productId }) {
                     </div>
                 </div>
             ) : (
-                <p>Loading product details...</p>
+                <>
+                    <Spinner
+                        description={"Loading"}
+                        styleType="loader"
+                    />
+                </>
             )}
         </Modal>
     );
