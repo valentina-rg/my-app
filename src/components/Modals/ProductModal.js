@@ -11,6 +11,7 @@ function ProductModal({ open, toggleOpen, productId }) {
         if (open && productId) {
             apiRequest.get(`https://4ilk3v7wbk.execute-api.eu-west-1.amazonaws.com/dev/products/${productId}.json`)
                 .then((res) => {
+                    console.log(res);
                     setProductDetails(res.data.product);
                 })
                 .catch((error) => {
@@ -19,6 +20,8 @@ function ProductModal({ open, toggleOpen, productId }) {
                 });
         }
     }, [open, productId]);
+
+    console.log({ productDetails });
 
 
 

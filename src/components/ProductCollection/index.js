@@ -73,7 +73,7 @@ function ProductCollection({animationData, collectionId}) {
                 setTimeout(() => {
                     setShowCards(true);
                     setShowAnimation(false);
-                }, 100);
+                }, 10);
             });
     }, [sortByAlphabetical, collectionId]);
 
