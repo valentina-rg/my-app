@@ -7,6 +7,31 @@ import ProductCards from "../ProductCards";
 
 
 function ProductCollection({animationData, collectionId}) {
+
+
+    const [detailCollection, setDetailCollection] = useState([]);
+    const [showCards, setShowCards] = useState(false);
+    const [showAnimation, setShowAnimation] = useState(true);
+    const [openDetail, setOpenDetail] = useState(false);
+    const [selectedProductId, setSelectedProductId] = useState([]);
+
+
+    const [selectedTags, setSelectedTags] = useState([]);
+    const [tagsOptions, setTagsOptions] = useState([]);
+    const [filteredItems, setFilteredItems] = useState([]);
+    const [sortByAlphabetical, setSortByAlphabetical] = useState(false);
+
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 5;
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil((filteredItems.length || 0) / itemsPerPage);
+
+
+
     const defaultOptions = {
         loop: true,
         autoplay: true,
@@ -16,20 +41,6 @@ function ProductCollection({animationData, collectionId}) {
         },
     };
 
-    const [detailCollection, setDetailCollection] = useState([]);
-    const [showCards, setShowCards] = useState(false);
-    const [openDetail, setOpenDetail] = useState(false);
-
-    const [selectedProductId, setSelectedProductId] = useState([]);
-    const [selectedTags, setSelectedTags] = useState([]);
-    const [tagsOptions, setTagsOptions] = useState([]);
-    const [filteredItems, setFilteredItems] = useState([]);
-
-    const [showAnimation, setShowAnimation] = useState(true);
-    const [sortByAlphabetical, setSortByAlphabetical] = useState(false);
-
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 5;
 
     useEffect(() => {
         apiRequest.get(collectionId)
@@ -58,10 +69,10 @@ function ProductCollection({animationData, collectionId}) {
 
                 setFilteredItems(sortedProducts);
 
-                // Mostra le cards dopo 3 secondi
+                // Mostra le cards dopo tot secondi
                 setTimeout(() => {
                     setShowCards(true);
-                    setShowAnimation(false); // Hide the animation
+                    setShowAnimation(false);
                 }, 10);
             });
     }, [sortByAlphabetical, collectionId]);
@@ -86,15 +97,11 @@ function ProductCollection({animationData, collectionId}) {
         setCurrentPage(1); // Reset current page to 1 when filters change
     }, [selectedTags, detailCollection]);
 
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil((filteredItems.length || 0) / itemsPerPage);
 
     return (
         <div className={"container"}>
             <div className="mr-8 flex justify-center items-center z-0 flex-col opacity-90 ">
-                {/* SearchSelect and other UI components */}
+                {/* SearchSelect  */}
                 <div className="flex justify-center gap-2 z-40 w-96 mt-12">
                     <SearchSelect
                         options={tagsOptions}

@@ -1,4 +1,3 @@
-import React from "react";
 import animationJewelry from "../../lotties/animation_llb24y4a.json";
 import ProductCollection from "../ProductCollection";
 
