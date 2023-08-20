@@ -8,10 +8,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
 import About from "./components/About";
-/*
 import Products from "./components/Products";
-*/
-import Products2 from "./components/Products2";
 
 function App() {
 
@@ -25,7 +22,7 @@ function App() {
             <main>
                 <Hero/>
                 <About/>
-                <Products2/>
+                <Products/>
             </main>
             <Footer/>
         </div>
