@@ -1,25 +1,35 @@
-import logo from './logo.svg';
+import {useEffect} from "react";
+import Aos from "aos";
+
+
 import './App.css';
 
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import About from "./components/About";
+/*
+import Products from "./components/Products";
+*/
+import Products2 from "./components/Products2";
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    useEffect(() => {
+        Aos.init();
+    }, []);
+
+    return (
+        <div className={'bg-gradient-to-br from-neutral-50 to-indigo-200 min-h-screen'}>
+            <Header/>
+            <main>
+                <Hero/>
+                <About/>
+                <Products2/>
+            </main>
+            <Footer/>
+        </div>
+    );
 }
 
 export default App;
